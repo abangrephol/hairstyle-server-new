@@ -49,7 +49,29 @@ return [
                 'main' => 'Users',
             ],
         ],
+        'reseller' => [
+            'title' => 'Resellers',
+            'all' => 'All Reseller',
+            'clients' => [
+                'all' => 'Clients'
+            ],
+            'apikey' => [
+                'all' => 'API Keys'
+            ],
 
+        ],
+        'master'=> [
+            'title' => 'Master Data',
+            'hairstyle' => [
+                'all' => 'Hairstyles',
+            ],
+            'frame' => [
+                'all' => 'Frames'
+            ],
+            'category' => [
+                'all' => 'Categories'
+            ]
+        ],
         'log-viewer' => [
             'main' => 'Log Viewer',
             'dashboard' => 'Dashboard',

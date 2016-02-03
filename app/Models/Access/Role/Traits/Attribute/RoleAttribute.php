@@ -26,7 +26,7 @@ trait RoleAttribute
     public function getDeleteButtonAttribute()
     {
         //Can't delete master admin role
-        if ($this->id != 1) {
+        if ($this->id != 1 && $this->id != 2 && $this->id != 3) {
             if (access()->allow('delete-roles')) {
                 return '<a href="' . route('admin.access.roles.destroy', $this->id) . '" class="btn btn-xs btn-danger" data-method="delete"><i class="fa fa-times" data-toggle="tooltip" data-placement="top" title="' . trans('buttons.general.crud.delete') . '"></i></a>';
             }

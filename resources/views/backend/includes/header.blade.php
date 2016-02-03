@@ -20,7 +20,7 @@
                 </li>
 
                 <!-- Messages: style can be found in dropdown.less-->
-                <li class="dropdown messages-menu">
+                <li class="dropdown messages-menu hide">
                     <!-- Menu toggle button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope-o"></i>
@@ -53,7 +53,7 @@
                 </li><!-- /.messages-menu -->
 
                 <!-- Notifications Menu -->
-                <li class="dropdown notifications-menu">
+                <li class="dropdown notifications-menu hide">
                     <!-- Menu toggle button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-bell-o"></i>
@@ -76,7 +76,7 @@
                 </li>
 
                 <!-- Tasks Menu -->
-                <li class="dropdown tasks-menu">
+                <li class="dropdown tasks-menu hide">
                     <!-- Menu Toggle Button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-flag-o"></i>
@@ -126,27 +126,15 @@
                         <li class="user-header">
                             <img src="{!! access()->user()->picture !!}" class="img-circle" alt="User Image" />
                             <p>
-                                {!! access()->user()->name !!} - {{ trans('roles.web_developer') }}
-                                <small>{{ trans('strings.backend.general.member_since') }} XX/XX/XXXX</small>
+                                {!! access()->user()->name !!}
+                                <!--small>{{ trans('strings.backend.general.member_since') }} XX/XX/XXXX</small-->
                             </p>
                         </li>
                         <!-- Menu Body -->
-                        <li class="user-body">
-                            <div class="col-xs-4 text-center">
-                                <a href="#">Link</a>
-                            </div>
-                            <div class="col-xs-4 text-center">
-                                <a href="#">Link</a>
-                            </div>
-                            <div class="col-xs-4 text-center">
-                                <a href="#">Link</a>
-                            </div>
-                        </li>
+                        <!--li class="user-body">
+                        </li-->
                         <!-- Menu Footer-->
                         <li class="user-footer">
-                            <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">{{ trans('navs.backend.button') }}</a>
-                            </div>
                             <div class="pull-right">
                                 <a href="{!! route('auth.logout') !!}" class="btn btn-default btn-flat">{{ trans('navs.general.logout') }}</a>
                             </div>

@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Backend\User;
 
+use App\Models\Access\Role\Role;
 use App\Models\Access\User\User;
 use App\Exceptions\GeneralException;
 use App\Repositories\Backend\Role\RoleRepositoryContract;
@@ -39,7 +40,7 @@ class EloquentUserRepository implements UserContract
 
     /**
      * @param  $id
-     * @param  bool               $withRoles
+     * @param  bool $withRoles
      * @throws GeneralException
      * @return mixed
      */
@@ -60,9 +61,9 @@ class EloquentUserRepository implements UserContract
 
     /**
      * @param  $per_page
-     * @param  string      $order_by
-     * @param  string      $sort
-     * @param  int         $status
+     * @param  string $order_by
+     * @param  string $sort
+     * @param  int $status
      * @return mixed
      */
     public function getUsersPaginated($per_page, $status = 1, $order_by = 'id', $sort = 'asc')
@@ -70,6 +71,16 @@ class EloquentUserRepository implements UserContract
         return User::where('status', $status)
             ->orderBy($order_by, $sort)
             ->paginate($per_page);
+    }
+
+
+    public function getResellerPaginated($per_page, $status = 1, $order_by = 'id', $sort = 'asc')
+    {
+        $users = User::search('Reseller',['roles.name'])
+            ->where('status', $status)
+            ->orderBy($order_by, $sort)
+            ->paginate($per_page);
+        return $users;
     }
 
     /**

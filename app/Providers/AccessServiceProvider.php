@@ -69,6 +69,7 @@ class AccessServiceProvider extends ServiceProvider
      */
     public function registerBindings()
     {
+
         $this->app->bind(
             \App\Repositories\Frontend\User\UserContract::class,
             \App\Repositories\Frontend\User\EloquentUserRepository::class
@@ -98,6 +99,7 @@ class AccessServiceProvider extends ServiceProvider
             \App\Repositories\Backend\Permission\Dependency\PermissionDependencyRepositoryContract::class,
             \App\Repositories\Backend\Permission\Dependency\EloquentPermissionDependencyRepository::class
         );
+
     }
 
     /**
