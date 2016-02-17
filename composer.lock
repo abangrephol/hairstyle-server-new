@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "97a21c9b58ea9d0c37b8dd146bef57f3",
-    "content-hash": "169ff717b60c09b15ec3cafc052bbbb5",
+    "hash": "234c321ad4359a52cbff4ca39e52245c",
+    "content-hash": "e8c849857d6a2cd316ddd744ed65c7a8",
     "packages": [
         {
             "name": "arcanedev/log-viewer",
@@ -2398,16 +2398,16 @@
         },
         {
             "name": "sofa/eloquence",
-            "version": "5.2.x-dev",
+            "version": "v5.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jarektkaczyk/eloquence.git",
-                "reference": "4e6d62a2e00ec47263e8a13452b6537cb79b7f4d"
+                "reference": "fcc6415b21f099cca18eb6311aa6817328597a60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jarektkaczyk/eloquence/zipball/4e6d62a2e00ec47263e8a13452b6537cb79b7f4d",
-                "reference": "4e6d62a2e00ec47263e8a13452b6537cb79b7f4d",
+                "url": "https://api.github.com/repos/jarektkaczyk/eloquence/zipball/fcc6415b21f099cca18eb6311aa6817328597a60",
+                "reference": "fcc6415b21f099cca18eb6311aa6817328597a60",
                 "shasum": ""
             },
             "require": {
@@ -2450,7 +2450,7 @@
                 "mutable",
                 "searchable"
             ],
-            "time": "2016-02-03 11:36:28"
+            "time": "2016-01-14 23:12:48"
         },
         {
             "name": "sofa/hookable",
@@ -4725,12 +4725,12 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": {
         "sofa/eloquence": 20,
         "dingo/api": 20
     },
-    "prefer-stable": false,
+    "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": ">=5.5.9"
