@@ -16,7 +16,8 @@
         "arcanedev/log-viewer": "~3.0",
         "barryvdh/laravel-ide-helper": "^2.1",
         "doctrine/dbal": "^2.5",
-        "sofa/eloquence": "~5.1@dev"
+        "sofa/eloquence": "~5.1@dev",
+        "dingo/api": "1.0.*@dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
