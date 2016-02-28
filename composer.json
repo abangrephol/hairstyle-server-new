@@ -29,11 +29,11 @@
     },
     "autoload": {
         "classmap": [
-            "database"
+            "database",
+            "packages/linkthrow/laravel-billing/src/"
         ],
         "psr-4": {
-            "App\\": "app/",
-            "LinkThrow\\Billing\\": "packages/linkthrow/laravel-billing/src/"
+            "App\\": "app/"
         },
         "files": [
             "app/helpers.php"
