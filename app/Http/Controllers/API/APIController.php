@@ -14,16 +14,70 @@ class APIController extends BaseController
 {
     use Helpers;
 
+    public function getAPIKey($imei)
+    {
+        $getAPI = ApiKey::where('imei',$imei);
+        if($getAPI->count()>0){
+            $api = $getAPI->first();
+            if($api->subscribed())
+            {
+                if($api->billingIsActive())
+                {
+                    $jsonArray = [
+                        "status" => true,
+                        "api" =>$api->api ,
+                        "message" => ""
+                    ];
+                }else{
+                    $jsonArray = [
+                        "status" => false,
+                        "message" => "The client billing is not activated."
+                    ];
+                }
+
+            }else{
+                $jsonArray = [
+                    "status" => false,
+                    "message" => "API Key not subscribed to any plan."
+                ];
+            }
+
+        }else{
+            $jsonArray = [
+                "status" => false,
+                "message" => "Client not registered."
+            ];
+        }
+        return $this->response->array($jsonArray) ;
+    }
     public function check($imei,$apikey)
     {
         $apiCheck = ApiKey::where('api',$apikey)
-            ->where('imei',$imei)
-            ->count();
-        if($apiCheck>0){
-            $jsonArray = [
-                "api" => true,
-                "message" => ""
-            ];
+            ->where('imei',$imei);
+        if($apiCheck->count()>0){
+            $api = $apiCheck->first();
+            if($api->subscribed())
+            {
+                if($api->billingIsActive())
+                {
+                    $jsonArray = [
+                        "api" => true,
+                        "message" => ""
+                    ];
+                }else{
+                    $jsonArray = [
+                        "api" => false,
+                        "message" => "The client billing is not activated."
+                    ];
+                }
+
+            }else{
+                $jsonArray = [
+                    "api" => false,
+                    "message" => "API Key not subscribed to any plan."
+                ];
+            }
+
         }else{
             $jsonArray = [
                 "api" => false,
