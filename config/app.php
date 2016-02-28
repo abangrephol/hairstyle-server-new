@@ -181,7 +181,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Sofa\Eloquence\ServiceProvider::class,
         Dingo\Api\Provider\LaravelServiceProvider::class,
-//        LinkThrow\Billing\BillingServiceProvider::class,
+        LinkThrow\Billing\BillingServiceProvider::class,
         /*
          * Has to override the Collective\Html\HtmlServiceProvider form singleton
          */
