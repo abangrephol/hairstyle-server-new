@@ -1,0 +1,40 @@
+{
+    "name": "linkthrow/laravel-billing",
+    "description": "A billing package for Laravel 5.",
+    "keywords": ["laravel", "billing", "stripe", "braintree", "cashier", "payments", "subscriptions", "charges"],
+    "authors": [
+        {
+            "name": "Mark Manos",
+            "email": "mark@airpac.com"
+        },
+        {
+            "name": "Hussan Choudhry",
+            "email": "hussan@uselinkthrow.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "~5.1",
+        "nesbot/carbon": "~1.0"
+    },
+    "require-dev": {
+        "stripe/stripe-php": "2.*",
+        "braintree/braintree_php" : "2.33.0"
+    },
+    "suggest": {
+        "stripe/stripe-php": "Add the Stripe gateway SDK.",
+        "braintree/braintree_php": "Add the Braintree gateway SDK."
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations",
+            "src/controllers",
+            "src/commands"
+        ],
+        "psr-0": {
+            "LinkThrow\\Billing\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "license": "MIT"
+}

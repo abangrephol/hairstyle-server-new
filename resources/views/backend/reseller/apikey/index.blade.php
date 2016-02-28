@@ -23,19 +23,37 @@
                         <th>Client Name</th>
                         <th>IMEI</th>
                         <th>API</th>
-                        <th class="visible-lg">{{ trans('labels.backend.access.users.table.created') }}</th>
-                        <th class="visible-lg">{{ trans('labels.backend.access.users.table.last_updated') }}</th>
+                        <th>Subscription Plan</th>
+                        <th>Status</th>
+                        <th>Valid until</th>
+                        <th class="hide ">{{ trans('labels.backend.access.users.table.created') }}</th>
+                        <th class="hide ">{{ trans('labels.backend.access.users.table.last_updated') }}</th>
                         <th>{{ trans('labels.general.actions') }}</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach ($apikeys as $apikey)
+                        <?php
+                                $sub = $apikey->subscription();
+                                $info = $sub->toArray();
+                        ?>
                         <tr>
                             <td>{!! $apikey->clients->clients->name !!}</td>
                             <td>{!! $apikey->imei !!}</td>
                             <td>{!! $apikey->api !!}</td>
-                            <td class="visible-lg">{!! $apikey->created_at->diffForHumans() !!}</td>
-                            <td class="visible-lg">{!! $apikey->updated_at->diffForHumans() !!}</td>
+                            <td>{!! $info['name'] !!}</td>
+                            <td>
+                                @if($apikey->billingIsActive())
+                                    {!! 'Active' !!}
+                                @elseif($apikey->canceled())
+                                    {!! 'Stopped / Canceled' !!}
+                                @else
+                                    {!! 'Not Active' !!}
+                                @endif
+                            </td>
+                            <td>{!! $info['period_ends_at'] !!}</td>
+                            <td class="hide ">{!! $apikey->created_at->diffForHumans() !!}</td>
+                            <td class="hide ">{!! $apikey->updated_at->diffForHumans() !!}</td>
                             <td>{!! $apikey->action_buttons !!}</td>
                         </tr>
                     @endforeach

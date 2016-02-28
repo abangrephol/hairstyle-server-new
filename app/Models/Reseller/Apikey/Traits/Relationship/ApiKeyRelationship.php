@@ -13,4 +13,11 @@ trait ApiKeyRelationship
         return $this->belongsTo(config('reseller.client'),  'client_id');
     }
 
+    public function customermodel()
+    {
+        // Return an Eloquent relationship.
+        return $this->belongsTo(config('reseller.client'),  'client_id');
+
+    }
+
 }

@@ -57,6 +57,11 @@ class ResellerServiceProvider extends ServiceProvider
             \App\Repositories\Backend\Reseller\Reseller\ResellerContract::class,
             \App\Repositories\Backend\Reseller\Reseller\EloquentResellerRepository::class
         );
+
+        $this->app->bind(
+            \App\Repositories\Backend\Reseller\SubscriptionPlan\SubscriptionPlanContract::class,
+            \App\Repositories\Backend\Reseller\SubscriptionPlan\EloquentSubscriptionPlanRepository::class
+        );
     }
 
 }

@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Backend\Reseller\ApiKey;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\Reseller\ApiKey\DeleteApiKeyRequest;
 use App\Http\Requests\Backend\Reseller\ApiKey\EditApiKeyRequest;
+use App\Http\Requests\Backend\Reseller\ApiKey\MarkApiKeyRequest;
 use App\Http\Requests\Backend\Reseller\ApiKey\StoreApiKeyRequest;
 use App\Http\Requests\Backend\Reseller\ApiKey\UpdateApiKeyRequest;
 use App\Models\Reseller\ApiKey\ApiKey;
 use App\Repositories\Backend\Reseller\ApiKey\ApiKeyContract;
 use App\Repositories\Backend\Reseller\Client\EloquentClientRepository;
+use App\Repositories\Backend\Reseller\SubscriptionPlan\EloquentSubscriptionPlanRepository;
 
 class ApiKeyController extends Controller{
 
@@ -17,14 +19,18 @@ class ApiKeyController extends Controller{
 
     protected $client;
 
+    protected $plan;
+
     public function __construct
     (
         ApiKeyContract $apikey,
-        EloquentClientRepository $client
+        EloquentClientRepository $client,
+        EloquentSubscriptionPlanRepository $plan
     )
     {
         $this->apikey = $apikey;
         $this->client = $client;
+        $this->plan = $plan;
     }
 
     /**
@@ -38,9 +44,11 @@ class ApiKeyController extends Controller{
 
     public function create()
     {
+        $plans = $this->plan->getAllSubscriptionPlans();
         return view('backend.reseller.apikey.create')
             ->withClients($this->client->getAllClients('id'))
-            ->withApi($this->apikey->generateAPI());
+            ->withApi($this->apikey->generateAPI())
+            ->withPlans($plans);
 
 
     }
@@ -74,4 +82,27 @@ class ApiKeyController extends Controller{
         return redirect()->back()->withFlashSuccess(trans('alerts.backend.users.deleted'));
     }
 
+    public function mark($id, $status, MarkApiKeyRequest $request)
+    {
+        $this->apikey->mark($id, $status);
+        return redirect()->back()->withFlashSuccess(trans('alerts.backend.users.updated'));
+    }
+    public function changePlan($id, EditApiKeyRequest $request)
+    {
+
+        $apikey = $this->apikey->findOrThrowException($id);
+        $currentSubInfo = $apikey->subscription()->toArray();
+        $plans = $this->plan->getAllSubscriptionPlans();
+        return view('backend.reseller.apikey.changeplan')
+            ->withApikey($apikey)
+            ->withSubinfo($currentSubInfo)
+            ->withPlans($plans);
+    }
+
+    public function change($id, EditApiKeyRequest $request)
+    {
+        $this->apikey->change($id,$request->all());
+
+        return redirect()->route('admin.reseller.apikey.index')->withFlashSuccess(trans('alerts.backend.users.updated'));
+    }
 }

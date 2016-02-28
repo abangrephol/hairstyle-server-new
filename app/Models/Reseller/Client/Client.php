@@ -5,12 +5,14 @@ namespace App\Models\Reseller\Client;
 use App\Models\Reseller\Client\Traits\Attribute\ClientAttribute;
 use App\Models\Reseller\Client\Traits\Relationship\ClientRelationship;
 use Illuminate\Database\Eloquent\Model;
+use LinkThrow\Billing\CustomerBillableTrait;
 use Sofa\Eloquence\Eloquence;
 
 class Client extends Model
 {
-    use ClientAttribute,ClientRelationship,Eloquence;
+    use ClientAttribute,ClientRelationship,Eloquence,CustomerBillableTrait;
 
+    protected $cardUpFront = false;
     protected $table;
 
     /**

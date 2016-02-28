@@ -48,6 +48,10 @@ interface ApiKeyContract
      */
     public function destroy($id);
 
+    public function mark($id,$status);
+
+    public function change($id,$input);
+
     public function generateAPI();
 
 }

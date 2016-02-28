@@ -58,6 +58,10 @@ return [
             'apikey' => [
                 'all' => 'API Keys'
             ],
+            'subscription' => [
+                'title' => 'Subscription',
+                'plan' => 'Plans'
+            ]
 
         ],
         'master'=> [

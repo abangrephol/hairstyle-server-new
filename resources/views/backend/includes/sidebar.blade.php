@@ -69,6 +69,19 @@
                             <a href="{!! url('admin/reseller/users') !!}">{{ trans('menus.backend.reseller.all') }}</a>
                         </li>
                         @endauth
+                        @permission('view-subscription')
+                        <li class="{{ Active::pattern('admin/reseller/subscription*') }}">
+                            <a href="#">
+                                <span>{{ trans('menus.backend.reseller.subscription.title') }}</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu {{ Active::pattern('admin/reseller/subscription*', 'menu-open') }}" style="display: none; {{ Active::pattern('admin/reseller/subscription*', 'display: block;') }}">
+                                <li class="{{ Active::pattern('admin/reseller/subscription/plan*') }}">
+                                    <a href="{!! url('admin/reseller/subscription/plan') !!}">{{ trans('menus.backend.reseller.subscription.plan') }}</a>
+                                </li>
+                            </ul>
+                        </li>
+                        @endauth
                         <li class="{{ Active::pattern('admin/reseller/client*') }}">
                             <a href="{!! url('admin/reseller/client') !!}">{{ trans('menus.backend.reseller.clients.all') }}</a>
                         </li>

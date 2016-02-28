@@ -51,6 +51,17 @@
                 </div>
             </div><!--form control-->
 
+            <div class="form-group">
+                {!! Form::label('plan', 'Subscription Plan', ['class' => 'col-lg-2 control-label']) !!}
+                <div class="col-lg-10">
+                    <select name="plan" class="form-control">
+
+                        @foreach ($plans as $plan)
+                            <option value="{!! $plan->key !!}">{!! $plan->name !!}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div><!--form control-->
 
 
         </div><!-- /.box-body -->

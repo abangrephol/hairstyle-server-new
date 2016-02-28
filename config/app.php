@@ -181,6 +181,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Sofa\Eloquence\ServiceProvider::class,
         Dingo\Api\Provider\LaravelServiceProvider::class,
+        LinkThrow\Billing\BillingServiceProvider::class,
         /*
          * Has to override the Collective\Html\HtmlServiceProvider form singleton
          */
@@ -241,6 +242,7 @@ return [
         'Gravatar'    => Creativeorange\Gravatar\Facades\Gravatar::class,
         'Html'        => Collective\Html\HtmlFacade::class,
         'Socialite'   => Laravel\Socialite\Facades\Socialite::class,
+        'Billing' => LinkThrow\Billing\Facades\Billing::class
     ],
 
 ];

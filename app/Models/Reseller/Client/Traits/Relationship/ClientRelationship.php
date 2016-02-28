@@ -17,4 +17,10 @@ trait ClientRelationship
     {
         return $this->belongsTo(config('auth.providers.users.model'), 'reseller_id');
     }
+    public function subscriptionmodels()
+    {
+        // Return an Eloquent relationship.
+        return $this->hasMany(config('reseller.apikey'));
+
+    }
 }

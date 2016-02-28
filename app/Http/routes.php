@@ -1,5 +1,8 @@
 <?php
 
+
+use LinkThrow\Billing\Gateways\Local\Models\Plan;
+
 Route::group(['middleware' => 'web'], function() {
     /**
      * Switch between the included languages
@@ -39,3 +42,37 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ad
 });
 
 require (__DIR__ . '/Routes/API/API.php');
+
+Route::get('/foo',function(){
+
+
+
+    $client = App\Models\Reseller\Client\Client::find(4);
+    $api = \App\Models\Reseller\ApiKey\ApiKey::find(35);
+    $sub = $api->subscription();
+    dd($sub->toArray());
+//    $api->subscription()->increment();
+//
+
+////    $client->billing()->withCardToken('token')->create();
+//    $client->subscriptions('test')->create($api);
+////    $api->subscription('test')->resume();
+//    if($api->subscribed())
+//        echo $api->customer();
+
+
+//    try{
+//        return Artisan::call('laravel-billing:local:create-plan',
+//            [
+//                'key' => 'foossfa',
+//                'name' => 'Fuck you dumb',
+//                'amount' => 1,
+//                'interval' => 'monthly',
+//                'trial' => 7
+//            ]
+//        );
+//    } catch (Exception $e) {
+//        Response::make($e->getMessage(), 500);
+//    }
+
+});

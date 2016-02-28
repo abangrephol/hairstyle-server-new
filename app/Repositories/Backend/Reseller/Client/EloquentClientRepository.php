@@ -95,6 +95,13 @@ class EloquentClientRepository implements ClientContract
 
             $client->save();
 
+            // Add client to billing
+            $client->billing()->withCardToken('token')->create(
+                [
+                    'email' => $input['email']
+                ]
+            );
+
             //Send confirmation email if requested
             if (isset($input['confirmation_email']) && $user->confirmed == 0) {
                 $this->user->sendConfirmationEmail($user->id);
@@ -140,7 +147,7 @@ class EloquentClientRepository implements ClientContract
 
         $client = $this->findOrThrowException($id);
         $user = $this->user->findOrThrowException($client->client_id,true);
-
+        $client->billing()->delete();
         if ($client->delete()) {
             $this->user->delete($client->client_id);
             return true;

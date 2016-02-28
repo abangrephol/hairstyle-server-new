@@ -5,11 +5,12 @@ namespace App\Models\Reseller\ApiKey;
 use App\Models\Reseller\ApiKey\Traits\Attribute\ApiKeyAttribute;
 use App\Models\Reseller\ApiKey\Traits\Relationship\ApiKeyRelationship;
 use Illuminate\Database\Eloquent\Model;
+use LinkThrow\Billing\SubscriptionBillableTrait;
 use Sofa\Eloquence\Eloquence;
 
 class ApiKey extends Model
 {
-    use ApiKeyAttribute,ApiKeyRelationship,Eloquence;
+    use ApiKeyAttribute,ApiKeyRelationship,Eloquence,SubscriptionBillableTrait;
 
     protected $table;
 

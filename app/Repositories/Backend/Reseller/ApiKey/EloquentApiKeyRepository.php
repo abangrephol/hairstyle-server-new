@@ -3,6 +3,7 @@
 namespace App\Repositories\Backend\Reseller\ApiKey;
 use App\Exceptions\GeneralException;
 use App\Models\Reseller\ApiKey\ApiKey;
+use App\Models\Reseller\Client\Client;
 
 /**
  * Interface ClientContract
@@ -76,7 +77,8 @@ class EloquentApiKeyRepository implements  ApiKeyContract
         $apikey->client_id = $input['client_id'];
 
         if ($apikey->save()) {
-
+            $client = Client::with('clients')->find($input['client_id']);
+            $client->subscriptions($input['plan'])->create($apikey);
             return true;
         }
 
@@ -106,7 +108,7 @@ class EloquentApiKeyRepository implements  ApiKeyContract
     public function destroy($id)
     {
         $apikey = $this->findOrThrowException($id);
-
+        $apikey->subscription()->cancel();
         if($apikey->delete()){
             return true;
         }
@@ -114,6 +116,42 @@ class EloquentApiKeyRepository implements  ApiKeyContract
         throw new GeneralException(trans('exceptions.backend.access.users.delete_error'));
     }
 
+    public function mark($id,$status)
+    {
+        $apikey = $this->findOrThrowException($id);
+        switch($status){
+            case 0:
+                $apikey->subscription()->cancel();
+                return true;
+                break;
+            case 1:
+                $apikey->subscription()->resume();
+                return true;
+                break;
+            default:
+                throw new GeneralException(trans('exceptions.backend.access.users.update_error'));
+                break;
+        }
+//        if($apikey->save())
+//        {
+//            $apikey->save();
+//            return true;
+//        }
+        throw new GeneralException(trans('exceptions.backend.access.users.update_error'));
+    }
+    public function change($id,$input)
+    {
+        $apikey = $this->findOrThrowException($id);
+
+
+        if($apikey->subscription($input['plan'])->swap()){
+            return true;
+        }
+
+
+
+        throw new GeneralException(trans('exceptions.backend.access.users.update_error'));
+    }
     public function generateAPI(){
         $unique = false;
         $api = "";
